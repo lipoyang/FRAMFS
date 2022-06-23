@@ -9,6 +9,7 @@ void setup()
     Serial.println("FRAM Test");
     
     // Begin FRAM
+#if true
     if(!fram.begin(4)){
         if(fram.isUnformatted()){
             if(fram.format(4)){
@@ -22,6 +23,12 @@ void setup()
             return;
         }
     }
+#else
+    // or just as below
+    if(!fram.beginOrFormat(4)){
+        Serial.println("FRAM Mount Failed!");
+    }
+#endif
     
     // Get FRAM Size
     uint32_t total = fram.totalBytes();
@@ -67,7 +74,7 @@ void setup()
 
 void loop()
 {
-    if(Serial.read())
+    if(Serial.available())
     {
         char c = Serial.read();
 

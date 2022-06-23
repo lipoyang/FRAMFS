@@ -86,7 +86,7 @@ void setup()
 
 void loop()
 {
-    if(Serial.read())
+    if(Serial.available())
     {
         char c = Serial.read();
 
