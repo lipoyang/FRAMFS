@@ -82,6 +82,24 @@ bool FRAMFS::format(
     return this->begin(ssPin, spi, frequency, mountpoint, max_files, false, true);
 }
 
+// begin the FRAM drive, or format it
+// ssPin: pin number of SS (Slave Select)
+// spi: SPI bus
+// frequency: SPI clock frequency [Hz]
+// mountpoint: mount point path
+// max_files: max file number
+// return: result
+bool FRAMFS::beginOrFormat(
+        uint8_t ssPin,
+        SPIClass &spi, 
+        uint32_t frequency,
+        const char * mountpoint,
+        uint8_t max_files
+    )
+{
+    return this->begin(ssPin, spi, frequency, mountpoint, max_files, true, false);
+}
+
 // end the FRAM drive
 void FRAMFS::end()
 {

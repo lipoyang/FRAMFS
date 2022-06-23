@@ -24,6 +24,12 @@ public:
             uint32_t frequency=4000000,
             const char * mountpoint="/fram",
             uint8_t max_files=10);
+    bool beginOrFormat(
+            uint8_t ssPin=SS,
+            SPIClass &spi=SPI, 
+            uint32_t frequency=4000000,
+            const char * mountpoint="/fram",
+            uint8_t max_files=10);
     void end();
     
     bool isUnformatted();
